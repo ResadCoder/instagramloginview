@@ -1,0 +1,69 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/css/style.css",
+      "PackagePath": "staticwebassets/css/style.css"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/applestore-logo.png",
+      "PackagePath": "staticwebassets/img/applestore-logo.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/facebook-logo.png",
+      "PackagePath": "staticwebassets/img/facebook-logo.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/googleplay-logo.png",
+      "PackagePath": "staticwebassets/img/googleplay-logo.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/instagram-logo.png",
+      "PackagePath": "staticwebassets/img/instagram-logo.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/phones.png",
+      "PackagePath": "staticwebassets/img/phones.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/photo-1.png",
+      "PackagePath": "staticwebassets/img/photo-1.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/photo-2.png",
+      "PackagePath": "staticwebassets/img/photo-2.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/photo-3.png",
+      "PackagePath": "staticwebassets/img/photo-3.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/photo-4.png",
+      "PackagePath": "staticwebassets/img/photo-4.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/img/photo-5.png",
+      "PackagePath": "staticwebassets/img/photo-5.png"
+    },
+    {
+      "Id": "/Users/resadsadiqov/RiderProjects/WebApplication6/WebApplication6/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.WebApplication6.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.WebApplication6.props",
+      "PackagePath": "build\\WebApplication6.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.WebApplication6.props",
+      "PackagePath": "buildMultiTargeting\\WebApplication6.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.WebApplication6.props",
+      "PackagePath": "buildTransitive\\WebApplication6.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

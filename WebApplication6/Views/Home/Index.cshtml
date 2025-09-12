@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<form id="login-post" method="post" asp-controller="Account" asp-action="Login">
+    <div class="inputs-container">
+        <input type="text" name="username" placeholder="Phone number, username or email" required>
+    </div>
+    <div class="inputs-container">
+        <input type="password" name="password" placeholder="Password" required>
+    </div>
+    <button type="submit" class="login-button">Log In</button>
+</form>
+
+<div class="or-container">
+    <div class="line"></div>
+    <div class="or">OR</div>
+    <div class="line"></div>
+</div>
+
+<div class="facebook-container">
+    <a class="facebook-login" href="#"><img class="facebook-logo" src="~/img/facebook-logo.png">Log in with Facebook</a>
+</div>
