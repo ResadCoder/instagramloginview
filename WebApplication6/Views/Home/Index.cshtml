@@ -1,23 +1,56 @@
 ﻿@{
     Layout = "_Layout";
+    ViewData["Title"] = "Login";
 }
 
-<form id="login-post" method="post" asp-controller="Account" asp-action="Login">
-    <div class="inputs-container">
-        <input type="text" name="username" placeholder="Phone number, username or email" required>
-    </div>
-    <div class="inputs-container">
-        <input type="password" name="password" placeholder="Password" required>
-    </div>
-    <button type="submit" class="login-button">Log In</button>
-</form>
+<div id="content-container">
 
-<div class="or-container">
-    <div class="line"></div>
-    <div class="or">OR</div>
-    <div class="line"></div>
-</div>
+    <!-- User login section -->
+    <section class="user">
+        <div class="login-container">
 
-<div class="facebook-container">
-    <a class="facebook-login" href="#"><img class="facebook-logo" src="~/img/facebook-logo.png">Log in with Facebook</a>
+            <!-- Instagram Logo -->
+            <div class="instagram-logo-box">
+                <img class="instagram-logo" src="~/img/instagram-logo.png" alt="Instagram Logo" />
+            </div>
+
+            <!-- Form Login -->
+            <form method="post">
+                <div class="inputs-container">
+                    <input type="text" name="Username" placeholder="Phone number, username or email" />
+                </div>
+                <div class="inputs-container">
+                    <input type="password" name="Password" placeholder="Password" />
+                </div>
+                <button type="submit" class="login-button">Log In</button>
+            </form>
+
+            <!-- Display errors or success messages -->
+            @if(ViewBag.Error != null)
+            {
+                <p style="color:red">@ViewBag.Error</p>
+            }
+
+            @if(ViewBag.Message != null)
+            {
+                <p style="color:green">@ViewBag.Message</p>
+            }
+
+            <a class="password-forgot" href="#">Forgot password?</a>
+        </div>
+
+        <!-- Sign up section -->
+        <div class="signup-container">
+            <p>Don't have an account? <a class="signup" href="#">Sign up</a></p>
+        </div>
+
+        <!-- Get app section -->
+        <div class="get-container">
+            <p>Get the app.</p>
+            <div class="download-container">
+                <a class="download-appstore" href="#"><img class="appstore" src="~/img/applestore-logo.png" /></a>
+                <a class="download-googleplay" href="#"><img class="googleplay" src="~/img/googleplay-logo.png" /></a>
+            </div>
+        </div>
+    </section>
 </div>
