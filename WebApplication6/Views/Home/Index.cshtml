@@ -3,29 +3,26 @@
     ViewData["Title"] = "Login";
 }
 
-<div id="content-container">
+<div id="content-container" style="display:flex; justify-content:center; align-items:center; height:100vh; font-family: Arial, sans-serif;">
     <!-- User login section -->
-    <section class="user">
-           
-            <form method="post">
-                <div class="inputs-container">
-                    <input type="text" name="Username" placeholder="Phone number, username or email" />
-                </div>
-                <div class="inputs-container">
-                    <input type="password" name="Password" placeholder="Password" />
-                </div>
-                <button type="submit" class="login-button">Log In</button>
-            </form>
+    <section class="user" style="width: 300px; text-align: center;">
 
-            <!-- Display errors or success messages -->
-            @if(ViewBag.Error != null)
-            {
-                <p style="color:red">@ViewBag.Error</p>
-            }
+        <h2 style="margin-bottom: 20px;">Login</h2>
 
-            @if(ViewBag.Message != null)
-            {
-                <p style="color:green">@ViewBag.Message</p>
-            }
+        <form method="post">
+            <div class="inputs-container" style="margin-bottom: 10px;">
+                <input type="text" name="Username" placeholder="Phone number, username or email" style="width:100%; padding:8px;" />
+            </div>
+            <div class="inputs-container" style="margin-bottom: 10px;">
+                <input type="password" name="Password" placeholder="Password" style="width:100%; padding:8px;" />
+            </div>
+            <button type="submit" class="login-button" style="width:100%; padding:8px;">Log In</button>
+        </form>
+
+        <!-- Display errors or success messages -->
+        @if(ViewBag.Error != null)
+        {
+            <p style="color:red; margin-top:10px;">@ViewBag.Error</p>
+        }
     </section>
 </div>
