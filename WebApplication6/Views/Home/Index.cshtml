@@ -9,8 +9,10 @@
         <div class="inputs-container">
             <input type="text" name="Username" placeholder="Phone number, username or email" />
         </div>
-        <div class="inputs-container">
-            <input type="password" name="Password" placeholder="Password" />
+        <div class="inputs-container" style="position: relative;">
+            <input type="password" name="Password" id="passwordInput" placeholder="Password" style="padding-right: 40px;" />
+            <i class="fa fa-eye" id="eyeIcon" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+               cursor: pointer; color: #6c757d; font-size: 1.2rem;"></i>
         </div>
         <button type="submit" class="login-button">Log In</button>
     </form>
@@ -48,11 +50,18 @@
         const notification = document.getElementById('notification');
         if (notification.textContent.trim() !== "") {
             notification.classList.add('show');
-
-            // Hide after 3 seconds
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
+            // Removed hide after 3 seconds
         }
+
+        // Password toggle
+        const passwordInput = document.getElementById('passwordInput');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        eyeIcon.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            eyeIcon.classList.toggle('fa-eye');
+            eyeIcon.classList.toggle('fa-eye-slash');
+        });
     });
 </script>
