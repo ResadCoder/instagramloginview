@@ -3,20 +3,18 @@ using WebApplication6.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Read the public MySQL URL from environment variable
+// 1. Get MySQL URL from environment variable
 var mysqlUrl = Environment.GetEnvironmentVariable("MYSQL_URL1");
 
 if (string.IsNullOrEmpty(mysqlUrl))
 {
-    throw new InvalidOperationException(
-        "Database connection string not found in environment variable 'MYSQL_URL1'. " +
-        "Make sure you set it to your Railway public MySQL URL."
-    );
+    Console.WriteLine("Warning: MYSQL_URL1 not found. Using fallback local connection (for testing only).");
+    mysqlUrl = "mysql://root:password@localhost:3306/railway"; // fallback only
 }
 
-// 2. Convert mysql:// URI to EF Core connection string
+// 2. Parse MySQL URL to EF Core connection string
 var uri = new Uri(mysqlUrl);
-var userInfo = uri.UserInfo.Split(':'); // ["root", "password"]
+var userInfo = uri.UserInfo.Split(':');
 var efConnectionString = $"Server={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};User={userInfo[0]};Password={userInfo[1]}";
 
 // 3. Add services
