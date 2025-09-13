@@ -19,7 +19,9 @@ var efConnectionString = $"Server={uri.Host};Port={uri.Port};Database={uri.Absol
 // 2️⃣ Add services
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(efConnectionString, new MySqlServerVersion(new Version(8, 0, 33)))
+    options.UseMySql(efConnectionString, new MySqlServerVersion(new Version(8, 0, 33)), 
+        mysqlOptions => mysqlOptions.EnableRetryOnFailure()
+    )
 );
 builder.Services.AddAuthorization(); // required for UseAuthorization
 
