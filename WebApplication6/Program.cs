@@ -3,45 +3,48 @@ using WebApplication6.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// 1. Read MySQL URL from environment variable
+var mysqlUrl = Environment.GetEnvironmentVariable("MYSQL_URL1");
+
+if (string.IsNullOrEmpty(mysqlUrl))
+{
+    throw new InvalidOperationException("Database connection string not found in environment variable 'MYSQL_URL1'.");
+}
+
+// 2. Convert mysql:// URI to EF Core connection string
+// mysql://user:password@host:port/database
+var uri = new Uri(mysqlUrl);
+var userInfo = uri.UserInfo.Split(':');
+
+var efConnectionString = $"Server={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};User={userInfo[0]};Password={userInfo[1]}";
+
+// 3. Add services to the container
 builder.Services.AddControllersWithViews();
 
-// Configure DbContext for MySQL
+// 4. Configure DbContext with MySQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        new MySqlServerVersion(new Version(8, 0, 33)) // MySQL version
-    );
-});
+    options.UseMySql(efConnectionString, new MySqlServerVersion(new Version(8, 0, 33)))
+);
 
 var app = builder.Build();
 
-// Middleware pipeline
-
-// Error handling & security
+// 5. Middleware pipeline
 if (!app.Environment.IsDevelopment())
 {
-    // Show friendly error page instead of stack trace
     app.UseExceptionHandler("/Home/Error");
-
-    // Enforce HTTPS for production
     app.UseHsts();
 }
 else
 {
-    // Developer-friendly error page
     app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
 
-// Default MVC route
+// 6. Default MVC route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
