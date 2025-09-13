@@ -330,3 +330,17 @@ body{
   margin: 64px auto 0;
   padding-bottom: 64px;
 }
+
+/* Fix Font Awesome icons being overridden by global styles */
+.fas, .far, .fal, .fab {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900; /* solid icons */
+  speak: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
