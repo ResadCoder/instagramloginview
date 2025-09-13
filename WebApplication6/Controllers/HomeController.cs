@@ -41,7 +41,7 @@ namespace WebApplication6.Controllers
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            ViewBag.Message = "User saved successfully!";
+            ViewBag.Message = "Invalid username or password";
             return View(new LoginViewModel());
         }
     }

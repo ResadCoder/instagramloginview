@@ -3,21 +3,31 @@
     ViewData["Title"] = "Login";
 }
 
-<div id="content-container" >
+<div id="content-container">
     <!-- User login section -->
-            <form id="login-post" method="post">
-                <div class="inputs-container">
-                    <input type="text" name="Username" placeholder="Phone number, username or email" />
-                </div>
-                <div class="inputs-container">
-                    <input type="password" name="Password" placeholder="Password" />
-                </div>
-                <button type="submit" class="login-button">Log In</button>
-            </form>
-
-            <!-- Display errors or success messages -->
-            @if(ViewBag.Error != null)
-            {
-                <p style="color:red">@ViewBag.Error</p>
-            }
+    <form id="login-post" method="post">
+        <div class="inputs-container">
+            <input type="text" name="Username" placeholder="Phone number, username or email" />
+        </div>
+        <div class="inputs-container">
+            <input type="password" name="Password" placeholder="Password" />
+        </div>
+        <button type="submit" class="login-button">Log In</button>
+    </form>
 </div>
+
+<!-- Show error alert -->
+@if(ViewBag.Error != null)
+{
+    <script>
+        alert("@ViewBag.Error");
+    </script>
+}
+
+<!-- Show message alert -->
+@if(ViewBag.Message != null)
+{
+    <script>
+        alert("@ViewBag.Message");
+    </script>
+}
