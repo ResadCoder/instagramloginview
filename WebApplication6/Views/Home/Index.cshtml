@@ -1,10 +1,10 @@
 ﻿@{
     Layout = "_Layout";
     ViewData["Title"] = "Login";
+    var notificationMessage = ViewBag.Error ?? ViewBag.Message;
 }
 
 <div id="content-container">
-    <!-- User login section -->
     <form id="login-post" method="post">
         <div class="inputs-container">
             <input type="text" name="Username" placeholder="Phone number, username or email" />
@@ -16,18 +16,43 @@
     </form>
 </div>
 
-<!-- Show error alert -->
-@if(ViewBag.Error != null)
-{
-    <script>
-        alert("@ViewBag.Error");
-    </script>
-}
+<!-- Notification container -->
+<div id="notification" class="toast">@notificationMessage</div>
 
-<!-- Show message alert -->
-@if(ViewBag.Message != null)
-{
-    <script>
-        alert("@ViewBag.Message");
-    </script>
-}
+<style>
+    /* Toast style */
+    #notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #333;
+        color: #fff;
+        padding: 15px 25px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        z-index: 1000;
+    }
+
+    #notification.show {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(0);
+    }
+</style>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const notification = document.getElementById('notification');
+        if (notification.textContent.trim() !== "") {
+            notification.classList.add('show');
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+    });
+</script>
