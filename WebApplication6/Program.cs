@@ -8,7 +8,7 @@ var mysqlUrl = Environment.GetEnvironmentVariable("MYSQL_URL11");
 
 if (string.IsNullOrEmpty(mysqlUrl))
 {
-    throw new InvalidOperationException("MYSQL_URL1 environment variable is required.");
+    throw new InvalidOperationException("MYSQL_URL11 environment variable is required.");
 }
 
 // Parse URL to EF Core connection string
@@ -16,10 +16,12 @@ var uri = new Uri(mysqlUrl);
 var userInfo = uri.UserInfo.Split(':');
 var efConnectionString = $"Server={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};User={userInfo[0]};Password={userInfo[1]}";
 
-// Add DbContext
+// 2️⃣ Add services
+builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(efConnectionString, new MySqlServerVersion(new Version(8, 0, 33)))
 );
+builder.Services.AddAuthorization(); // required for UseAuthorization
 
 var app = builder.Build();
 
@@ -30,7 +32,7 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
-// 5️⃣ Middleware pipeline
+// 3️⃣ Middleware pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -46,7 +48,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
-// 6️⃣ Default MVC route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
