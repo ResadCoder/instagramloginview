@@ -14,9 +14,10 @@
         <!-- Password input with eye icon -->
         <div class="inputs-container" style="position: relative;">
             <input type="password" name="Password" id="passwordInput" placeholder="Password" style="width:100%; padding-right:40px;" />
-            <i class="fas fa-eye" id="eyeIcon"
+            <i class="fa fa-eye" id="eyeIcon"
                style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
-              cursor: pointer; color: #6c757d; font-size: 1.2rem;"></i>
+                  cursor: pointer; color: #6c757d; font-size: 1.2rem;">
+            </i>
         </div>
 
         <!-- Login button -->
@@ -58,16 +59,15 @@
         if (notification.textContent.trim() !== "") {
             notification.classList.add('show');
         }
-
-        // Password toggle functionality added here
+    });
+    
+    
+    document.getElementById('eyeIcon').addEventListener('click', function () {
         const passwordInput = document.getElementById('passwordInput');
-        const eyeIcon = document.getElementById('eyeIcon');
-
-        eyeIcon.addEventListener('click', () => {
-            const isPassword = passwordInput.type === 'password';
-            passwordInput.type = isPassword ? 'text' : 'password';
-            eyeIcon.classList.toggle('fa-eye');
-            eyeIcon.classList.toggle('fa-eye-slash');
-        });
+        const isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
     });
 </script>
+
