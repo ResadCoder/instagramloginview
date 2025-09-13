@@ -3,26 +3,26 @@
     ViewData["Title"] = "Login";
 }
 
-<div id="content-container" style="display:flex; justify-content:center; align-items:center; height:100vh; font-family: Arial, sans-serif;">
-    <!-- User login section -->
-    <section class="user" style="width: 300px; text-align: center;">
-
-        <h2 style="margin-bottom: 20px;">Login</h2>
-
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="w-100" style="max-width: 400px;">
         <form method="post">
-            <div class="inputs-container" style="margin-bottom: 10px;">
-                <input type="text" name="Username" placeholder="Phone number, username or email" style="width:100%; padding:8px;" />
+            <div class="mb-3">
+                <input type="text" name="Username" class="form-control" placeholder="Phone number, username or email" />
             </div>
-            <div class="inputs-container" style="margin-bottom: 10px;">
-                <input type="password" name="Password" placeholder="Password" style="width:100%; padding:8px;" />
+            <div class="mb-3">
+                <input type="password" name="Password" class="form-control" placeholder="Password" />
             </div>
-            <button type="submit" class="login-button" style="width:100%; padding:8px;">Log In</button>
+            <button type="submit" class="btn btn-primary w-100">Log In</button>
         </form>
 
-        <!-- Display errors or success messages -->
         @if(ViewBag.Error != null)
         {
-            <p style="color:red; margin-top:10px;">@ViewBag.Error</p>
+            <p class="text-danger mt-2 text-center">@ViewBag.Error</p>
         }
-    </section>
+
+        @if(ViewBag.Message != null)
+        {
+            <p class="text-success mt-2 text-center">@ViewBag.Message</p>
+        }
+    </div>
 </div>
