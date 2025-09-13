@@ -324,3 +324,9 @@ body{
 .picture:nth-child(5){
   animation-delay: 25s;
 }
+#content-container{
+  display: flex;
+  align-items: center;
+  margin: 64px auto 0;
+  padding-bottom: 64px;
+}
