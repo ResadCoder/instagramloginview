@@ -4,55 +4,125 @@
     var notificationMessage = ViewBag.Error ?? ViewBag.Message;
 }
 
-<div id="content-container">
+<div id="content-container" style="max-width: 400px; margin: 50px auto; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); background-color: #fff;">
+    <h2 style="text-align:center; margin-bottom: 25px; font-family: Arial, sans-serif;">Login</h2>
+
     <form id="login-post" method="post">
-        <div class="inputs-container">
-            <input type="text" name="Username" placeholder="Phone number, username or email" />
+        <div class="inputs-container" style="margin-bottom: 20px;">
+            <input type="text" name="Username" placeholder="Phone number, username or email" style="width:100%; padding:12px 15px; border-radius:6px; border:1px solid #ccc; font-size:14px;" />
         </div>
-        <div class="inputs-container">
-            <input type="password" name="Password" placeholder="Password" />
+
+        <div class="inputs-container" style="position: relative; margin-bottom: 20px;">
+            <input type="password" id="Password" name="Password" placeholder="Password" style="width:100%; padding:12px 40px 12px 15px; border-radius:6px; border:1px solid #ccc; font-size:14px;" />
+            <!-- Eye icon SVG -->
+            <button type="button" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 0;">
+                <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 10s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+            </button>
         </div>
-        <button type="submit" class="login-button">Log In</button>
+
+        <button type="submit" class="login-button" style="width:100%; padding:12px; border:none; border-radius:6px; background-color:#007bff; color:white; font-size:16px; font-weight:bold;">Log In</button>
     </form>
 </div>
 
-<!-- Notification container -->
-<div id="notification" class="toast">@notificationMessage</div>
+<!-- Toast notification -->
+@if (!string.IsNullOrEmpty(notificationMessage))
+{
+    <div id="notification" class="toast">
+        <span>@notificationMessage</span>
+        <button id="closeNotification" class="close-toast">✖</button>
+    </div>
+}
 
 <style>
+    body {
+        background-color: #f0f2f5;
+        font-family: Arial, sans-serif;
+    }
+
     /* Toast style */
     #notification {
         position: fixed;
-        top: 20px;
-        right: 20px;
+        bottom: 30px;
+        right: 30px;
+        min-width: 250px;
+        max-width: 350px;
         background-color: #333;
         color: #fff;
-        padding: 15px 25px;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        z-index: 1000;
+        transform: translateY(50px);
+        transition: all 0.5s ease;
+        z-index: 9999;
+        font-size: 14px;
     }
 
     #notification.show {
         opacity: 1;
-        pointer-events: auto;
-        transform: translateX(0);
+        transform: translateY(0);
+    }
+
+    #notification .close-toast {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    #notification span {
+        flex: 1;
+    }
+
+    /* Input focus style */
+    input:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
     }
 </style>
 
 <script>
     window.addEventListener('DOMContentLoaded', () => {
-        const notification = document.getElementById('notification');
-        if (notification.textContent.trim() !== "") {
-            notification.classList.add('show');
+        // Show/hide password
+        const passwordInput = document.getElementById('Password');
+        const togglePassword = document.getElementById('togglePassword');
+        const eyeIcon = document.getElementById('eyeIcon');
 
-            // Hide after 3 seconds
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+
+            // Change eye icon (simple open/closed eye effect)
+            if(type === 'password') {
+                eyeIcon.innerHTML = '<path d="M1 10s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="10" r="3"/>';
+            } else {
+                eyeIcon.innerHTML = '<path d="M17.94 17.94L6.06 6.06"/><path d="M1 10s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>';
+            }
+        });
+
+        // Show toast
+        const notification = document.getElementById('notification');
+        if (notification) {
             setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+        }
+
+        // Close toast
+        const closeBtn = document.getElementById('closeNotification');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
                 notification.classList.remove('show');
-            }, 3000);
+            });
         }
     });
 </script>
