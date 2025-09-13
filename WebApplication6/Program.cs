@@ -4,7 +4,7 @@ using WebApplication6.Context;
 var builder = WebApplication.CreateBuilder(args);
 
 // 1️⃣ Get MySQL URL from environment variable
-var mysqlUrl = Environment.GetEnvironmentVariable("MYSQL_URL1");
+var mysqlUrl = Environment.GetEnvironmentVariable("MYSQL_URL11");
 
 if (string.IsNullOrEmpty(mysqlUrl))
 {
