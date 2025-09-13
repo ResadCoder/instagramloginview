@@ -6,14 +6,20 @@
 
 <div id="content-container">
     <form id="login-post" method="post">
+        <!-- Username input -->
         <div class="inputs-container">
             <input type="text" name="Username" placeholder="Phone number, username or email" />
         </div>
+
+        <!-- Password input with eye icon -->
         <div class="inputs-container" style="position: relative;">
-            <input type="password" name="Password" id="passwordInput" placeholder="Password" style="padding-right: 40px;" />
-            <i class="fa fa-eye" id="eyeIcon" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
-               cursor: pointer; color: #6c757d; font-size: 1.2rem;"></i>
+            <input type="password" name="Password" id="passwordInput" placeholder="Password" style="width:100%; padding-right:40px;" />
+            <i class="fa fa-eye" id="eyeIcon"
+               style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+                      cursor: pointer; color: #6c757d; font-size: 1.2rem;"></i>
         </div>
+
+        <!-- Login button -->
         <button type="submit" class="login-button">Log In</button>
     </form>
 </div>
@@ -47,10 +53,10 @@
 
 <script>
     window.addEventListener('DOMContentLoaded', () => {
+        // Show toast notification (will stay visible)
         const notification = document.getElementById('notification');
         if (notification.textContent.trim() !== "") {
             notification.classList.add('show');
-            // Removed hide after 3 seconds
         }
 
         // Password toggle
