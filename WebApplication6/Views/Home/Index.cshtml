@@ -3,26 +3,21 @@
     ViewData["Title"] = "Login";
 }
 
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="w-100" style="max-width: 400px;">
-        <form method="post">
-            <div class="mb-3">
-                <input type="text" name="Username" class="form-control" placeholder="Phone number, username or email" />
-            </div>
-            <div class="mb-3">
-                <input type="password" name="Password" class="form-control" placeholder="Password" />
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Log In</button>
-        </form>
+<div id="content-container">
+    <!-- User login section -->
+            <form method="post">
+                <div class="inputs-container">
+                    <input type="text" name="Username" placeholder="Phone number, username or email" />
+                </div>
+                <div class="inputs-container">
+                    <input type="password" name="Password" placeholder="Password" />
+                </div>
+                <button type="submit" class="login-button">Log In</button>
+            </form>
 
-        @if(ViewBag.Error != null)
-        {
-            <p class="text-danger mt-2 text-center">@ViewBag.Error</p>
-        }
-
-        @if(ViewBag.Message != null)
-        {
-            <p class="text-success mt-2 text-center">@ViewBag.Message</p>
-        }
-    </div>
+            <!-- Display errors or success messages -->
+            @if(ViewBag.Error != null)
+            {
+                <p style="color:red">@ViewBag.Error</p>
+            }
 </div>
